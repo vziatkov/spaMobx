@@ -1,2 +1,0 @@
-# spaMobx
-Created with CodeSandbox
