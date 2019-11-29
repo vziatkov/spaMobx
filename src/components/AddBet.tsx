@@ -1,13 +1,6 @@
 import * as React from "react";
-import { placeBet } from "../commands/PlaceBet";
 import { observer } from "mobx-react";
-import {
-  selectCanPlaceMainBet,
-  selectPlaceMainBetValue,
-  selectCanPlaceSideBet,
-  selectPlaceSideBetValue
-} from "../selectors/Betting";
-import { useBJStore } from "..";
+import { useBjCommands, useBjModels } from "..";
 
 interface AddBetProps {
   label: string;
@@ -27,20 +20,12 @@ class AddBetComponentView extends React.PureComponent<AddBetProps> {
 }
 
 export const AddMainBetComponent = observer((...args) => {
-  //const label = state.localizationService.translate("addBet");
-  const state = useBJStore();
-  const canPlaceMainBet = selectCanPlaceMainBet(state)();
-  const clickHandler = () =>
-    placeBet({
-      betModel: state.mainBet,
-      balanceModel: state.balance,
-      betValue: selectPlaceMainBetValue(state),
-      socketService: state.socketService,
-      canPlaceBet: canPlaceMainBet,
-      totalBetModel: state.totalBet,
-      playSoundService: state.playSoundService,
-      soundPath: "asd"
-    });
+  const commands = useBjCommands();
+  const model = useBjModels();
+  const canPlaceMainBet = model.mainBet.canPlaceBet;
+  const clickHandler = () => {
+    commands.placeMainBet.execute({ soundName: "clickMainBet" });
+  };
   return (
     <AddBetComponentView
       clickHandler={clickHandler}
@@ -51,20 +36,12 @@ export const AddMainBetComponent = observer((...args) => {
 });
 
 export const AddSideBetComponent = observer((...args) => {
-  //const label = state.localizationService.translate("addBet");
-  const state = useBJStore();
-  const canPlaceSideBet = selectCanPlaceSideBet(state)();
-  const clickHandler = () =>
-    placeBet({
-      betModel: state.mainBet,
-      balanceModel: state.balance,
-      betValue: selectPlaceSideBetValue(state),
-      socketService: state.socketService,
-      canPlaceBet: canPlaceSideBet,
-      totalBetModel: state.totalBet,
-      playSoundService: state.playSoundService,
-      soundPath: "asd"
-    });
+  const commands = useBjCommands();
+  const model = useBjModels();
+  const canPlaceSideBet = model.sideBet.canPlaceBet;
+  const clickHandler = () => {
+    commands.placeSideBet.execute({ soundName: "clickSidebet" });
+  };
   return (
     <AddBetComponentView
       clickHandler={clickHandler}

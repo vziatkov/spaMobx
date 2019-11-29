@@ -1,5 +1,5 @@
-import { BetType, IBetModel } from "../types/types";
-import { action, computed, observable } from "mobx";
+import { BetType, IBetState } from "../types/types";
+import { observable } from "mobx";
 
 /*
  Model it is class with data, actions over this data and computed values based on this data;
@@ -8,22 +8,21 @@ import { action, computed, observable } from "mobx";
   and dont have dependencies on other files
   all needed information is coming in constructor
  */
-export class BetModel implements IBetModel {
+export class BetState implements IBetState {
   public betType: BetType;
   @observable
-  public betValue = 0;
+  private _bet = 0;
 
   constructor(betType: BetType) {
     this.betType = betType;
-    this.betValue = 0;
+    this._bet = 0;
   }
 
-  @action
-  public addBet(value: number) {
-    this.betValue += value;
+  public set bet(value: number) {
+    this._bet = value;
   }
-  @computed
-  public get totalBetValue(): number {
-    return this.betValue;
+
+  public get bet(): number {
+    return this._bet;
   }
 }

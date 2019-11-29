@@ -5,10 +5,7 @@ interface ISoundPlayer {
 }
 
 export class PlaySoundService implements IPlaySoundService {
-  private player: ISoundPlayer;
-  constructor(player: ISoundPlayer) {
-    this.player = player;
-  }
+  constructor(private player: ISoundPlayer) {}
   public playSound(path: string): boolean {
     this.player.playSound(path);
     return true;
