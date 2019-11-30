@@ -9,12 +9,10 @@ import { observable } from "mobx";
   all needed information is coming in constructor
  */
 export class BetState implements IBetState {
-  public betType: BetType;
   @observable
   private _bet = 0;
 
-  constructor(betType: BetType) {
-    this.betType = betType;
+  constructor(private betType: BetType) {
     this._bet = 0;
   }
 

@@ -6,7 +6,7 @@ export class LogCommand implements ICommand<any, void> {
     private betType: BetType,
     private socketService: ISocketService
   ) {}
-  public execute(params): void {
+  public execute(params: any): void {
     this.socketService.send("send log " + this.betType);
     this.command.execute(params);
   }

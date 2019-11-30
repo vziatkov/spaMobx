@@ -17,7 +17,7 @@ import { BettingModel } from "./models/BettingModel";
 import { TotalBetModel } from "./models/TotalBetModel";
 import { BalanceModel } from "./models/BalanceModel";
 
-import { SoundPlayer } from "../evo-ui-components/SoundPlayer";
+//import { SoundPlayer } from "../evo-ui-components/SoundPlayer";
 
 import "./styles.css";
 
@@ -58,7 +58,7 @@ class App extends React.PureComponent<{}> {
   constructor(props: {}) {
     super(props);
     this.bjServices = {
-      playSoundService: new PlaySoundService(new SoundPlayer()),
+      playSoundService: new PlaySoundService({playSound: () => console.log("play sound")}),
       socketService: new SocketService()
     };
     this.bjModels = createModelsFactory(this.bjState);

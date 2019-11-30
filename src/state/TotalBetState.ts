@@ -5,10 +5,10 @@ export class TotalBetState implements ITotalBetState {
   @observable
   private _totalBet: number = 0;
   constructor(value: number) {
-    this.totalBet = value;
+    this._totalBet = value;
   }
 
-  public set totalBet(value: number): void {
+  public set totalBet(value: number) {
     this._totalBet = value;
   }
 

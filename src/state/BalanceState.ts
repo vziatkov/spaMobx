@@ -8,7 +8,7 @@ export class BalanceState implements IBalanceState {
     this._balance = value;
   }
 
-  public set balance(value: number): void {
+  public set balance(value: number) {
     this._balance = value;
   }
 
